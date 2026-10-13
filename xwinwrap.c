@@ -173,7 +173,9 @@ static Window find_subwindow(Window win, int w, int h)
             if (XGetWindowAttributes(display, children[j], &attrs)) {
                 /* Window must be mapped and same size as display or
                  * work space */
-                if (attrs.map_state != 0 && ((attrs.width == display_width
+                /* InputOnly windows (e.g. compositor/locker overlays) can't
+                 * parent an InputOutput window: XCreateWindow gives BadMatch */
+                if (attrs.class != InputOnly && attrs.map_state != 0 && ((attrs.width == display_width
                                               && attrs.height == display_height)
                                              || (attrs.width == w && attrs.height == h))) {
                     win = children[j];
