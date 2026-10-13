@@ -10,7 +10,7 @@ My use case - can use gif as a background
 
 ```
 sudo apt-get install xorg-dev build-essential libx11-dev x11proto-xext-dev libxrender-dev libxext-dev
-git clone https://github.com/ujjwal96/xwinwrap.git
+git clone https://github.com/dryingcore/xwinwrap.git
 cd xwinwrap
 make
 sudo make install
@@ -48,6 +48,10 @@ Example
 * Added ability to make undecorated window
 * Changed how desktop window is found
 * Refactored window hints
+* Fixed `BadMatch (X_CreateWindow)` with `-ov` ([ujjwal96/xwinwrap#15](https://github.com/ujjwal96/xwinwrap/issues/15)):
+  desktop window detection no longer picks fullscreen `InputOnly` windows, which can't parent the wrapper window
+
+> This fork carries fixes on top of [ujjwal96/xwinwrap](https://github.com/ujjwal96/xwinwrap), which is archived.
 
 ----
 Original source - https://launchpad.net/xwinwrap
